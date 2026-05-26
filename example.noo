@@ -1,0 +1,5 @@
+codex initiate
+    cycle verum
+        vox("Hail the omnissaiah")
+    cycle terminate
+codex terminate
