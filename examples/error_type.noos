@@ -1,0 +1,5 @@
+codex initiate
+    numerus counter = 3.14
+    vox(counter)
+    vox("\n")
+codexterminate

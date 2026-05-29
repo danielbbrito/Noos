@@ -1,0 +1,5 @@
+codex initiate
+    numerus result = base * height
+    vox(result)
+    vox("\n")
+codexterminate

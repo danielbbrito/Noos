@@ -23,6 +23,8 @@
   - [Exemplos inválidos](#exemplos-inválidos)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Como Compilar e Executar](#como-compilar-e-executar)
+  - [Linux / WSL2](#linux--wsl2)
+  - [Windows (PowerShell)](#windows-powershell)
 - [Tratamento de Erros](#tratamento-de-erros)
   - [Estrutura das Mensagens de Erro](#estrutura-das-mensagens-de-erro)
   - [Erros Léxicos](#erros-léxicos)
@@ -817,7 +819,7 @@ Noos/
 * `g++` com suporte a C++17
 * `make`
 
-## Compilando o compilador
+## Linux / WSL2
 
 Na raiz do repositório, execute:
 
@@ -825,7 +827,57 @@ Na raiz do repositório, execute:
 make && make install
 ```
 
-Isso gera o executável `noos` (ou `noos.exe` no Windows) e instala o compilador.
+Isso gera o executável `noos` em `/usr/local/bin`.
+
+## Windows (PowerShell)
+
+### 1. Instalar o MSYS2
+
+Baixe e instale o [MSYS2](https://www.msys2.org/) ou use o winget:
+
+```powershell
+winget install MSYS2.MSYS2
+```
+
+### 2. Instalar g++ e make
+
+Abra o terminal **MSYS2 UCRT64** e execute:
+
+```bash
+pacman -S mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make
+```
+
+### 3. Adicionar ao PATH do Windows
+
+No PowerShell, execute uma vez:
+
+```powershell
+[Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\msys64\ucrt64\bin", "User")
+```
+
+Feche e reabra o PowerShell para o PATH ser atualizado.
+
+### 4. Compilar e instalar
+
+Na raiz do repositório, execute:
+
+```powershell
+make && make install
+```
+
+> **Nota:** `&&` requer PowerShell 7+. Para versões anteriores use `make; if ($?) { make install }`.
+
+Isso gera `noos.exe` e instala em `%LOCALAPPDATA%\bin`.
+
+### 5. Adicionar o diretório de instalação ao PATH
+
+Execute uma vez no PowerShell:
+
+```powershell
+[Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";$env:LOCALAPPDATA\bin", "User")
+```
+
+Feche e reabra o PowerShell. Agora o comando `noos` estará disponível globalmente.
 
 ## Compilando um programa Noos
 
@@ -836,7 +888,8 @@ noos <arquivo.noos>
 Então gera um executável com o mesmo nome do arquivo, que pode ser executado diretamente:
 
 ```bash
-./<arquivo>
+./<arquivo>          # Linux / WSL2
+.\<arquivo>.exe      # Windows
 ```
 
 ## Flags opcionais
@@ -851,5 +904,5 @@ Então gera um executável com o mesmo nome do arquivo, que pode ser executado d
 Exemplo — inspecionar a árvore sintática abstrata durante a compilação:
 
 ```bash
-./noos exemplos/countdown.noos --dump-ast
+noos examples/countdown.noos --dump-ast
 ```

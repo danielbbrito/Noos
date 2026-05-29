@@ -1,5 +1,0 @@
-codex initiate
-    numerus contador = 3.14
-    vox(contador)
-    vox("\n")
-codexterminate
