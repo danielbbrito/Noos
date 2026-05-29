@@ -1,0 +1,37 @@
+codex initiate
+    numerus arr[5] = {64, 25, 12, 22, 11}
+
+    numerus i = 0
+    numerus j
+    numerus min_idx
+    numerus aux
+
+    cycle i < 4
+        j = i + 1
+        min_idx = i
+        cycle j < 5
+            verify arr[j] < arr[min_idx]
+                min_idx = j
+            verifyterminate
+            j = j + 1
+        cycleterminate
+
+        aux = arr[i]
+        arr[i] = arr[min_idx]
+        arr[min_idx] = aux
+        i = i + 1
+    cycleterminate
+
+    -- PT: Imprimimos resultados formatados
+    -- EN: Print formatted results
+    vox("{")
+    vox(arr[0])
+    i = 1
+    cycle i < 5
+        vox(", ")
+        vox(arr[i])
+        i = i + 1
+    cycleterminate
+    vox("}")
+    vox("\n")
+codexterminate

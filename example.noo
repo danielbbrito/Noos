@@ -1,5 +1,0 @@
-codex initiate
-    cycle verum == 2
-        vox("Hail the omnissaiah")
-    cycle terminate
-codex terminate

@@ -1,0 +1,13 @@
+codex initiate
+    ritus nullrite countdown(numerus n) initiate
+        cycle n > 0
+            vox(n)
+            vox("\n")
+            n = n - 1
+        cycleterminate
+        vox("Ignition!")
+        vox("\n")
+    ritusterminate
+
+    countdown(5)
+codexterminate
